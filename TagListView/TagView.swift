@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 open class TagView: UIButton {
-
+    
     @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
@@ -56,7 +56,7 @@ open class TagView: UIButton {
             updateRightInsets()
         }
     }
-
+    
     @IBInspectable open var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
             reloadStyles()
@@ -169,7 +169,7 @@ open class TagView: UIButton {
     
     private func setupView() {
         titleLabel?.lineBreakMode = titleLineBreakMode
-
+        
         frame.size = intrinsicContentSize
         addSubview(removeButton)
         removeButton.tagView = self
@@ -183,7 +183,7 @@ open class TagView: UIButton {
     }
     
     // MARK: - layout
-
+    
     override open var intrinsicContentSize: CGSize {
         var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
@@ -216,13 +216,3 @@ open class TagView: UIButton {
         }
     }
 }
-
-/// Swift < 4.2 support
-#if !(swift(>=4.2))
-private extension NSAttributedString {
-    typealias Key = NSAttributedStringKey
-}
-private extension UIControl {
-    typealias State = UIControlState
-}
-#endif
